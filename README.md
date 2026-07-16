@@ -103,6 +103,10 @@ python3 easyreading-academic-paper/scripts/check_coverage.py --self-test
 
 skill 的完整工作流与完成标准见 [`easyreading-academic-paper/SKILL.md`](easyreading-academic-paper/SKILL.md)。
 
+## 许可证
+
+本项目基于 [MIT License](LICENSE) 开源。版权所有 (c) 2026 szddddddd。
+
 相关规范与官方文档：
 
 - [Agent Skills specification](https://agentskills.io/specification)
