@@ -1,4 +1,4 @@
 interface:
   display_name: "Easy-Reading Academic Paper"
-  short_description: "覆盖前馈式三维重建与世界模型的完整易读学术论文解析"
-  default_prompt: "使用 $easyreading-academic-paper，按原论文结构完整解析这篇前馈式三维重建或世界模型论文，并逐步解释几何、坐标、公式与实验。"
+  short_description: "按原文结构完整解析视觉、三维重建、世界模型与生成式论文"
+  default_prompt: "使用 $easyreading-academic-paper，按原论文结构完整解析这篇论文，并逐项解释公式、图表、算法、代码与实验。"
