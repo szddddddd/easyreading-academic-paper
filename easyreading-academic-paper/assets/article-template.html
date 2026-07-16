@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — 完整易读学术解析</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+:root{
+  --bg:#f6f7f9;
+  --paper:#ffffff;
+  --text:#172033;
+  --muted:#5d687a;
+  --line:#dce1e8;
+  --accent:#2457a6;
+  --accent-soft:#eef4ff;
+  --strict:#eef7f2;
+  --bridge:#fff8e8;
+  --code:#f3f5f8;
+  --danger:#a4382d;
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Noto Sans CJK SC",sans-serif;
+  font-size:16px;
+  line-height:1.82;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.page{
+  width:min(var(--max),calc(100% - 32px));
+  margin:28px auto 72px;
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+.toc{
+  position:sticky;
+  top:18px;
+  max-height:calc(100vh - 36px);
+  overflow:auto;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+  font-size:14px;
+}
+.toc strong{display:block;margin-bottom:10px}
+.toc ol{margin:0;padding-left:20px}
+.toc li{margin:5px 0}
+.toc .level-3{margin-left:12px}
+main{
+  min-width:0;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:clamp(24px,5vw,64px);
+  box-shadow:0 8px 30px rgba(25,36,56,.05);
+}
+h1,h2,h3,h4{line-height:1.35;scroll-margin-top:24px}
+h1{font-size:clamp(30px,5vw,46px);margin:0 0 12px}
+h2{
+  font-size:26px;
+  margin:56px 0 18px;
+  padding-bottom:9px;
+  border-bottom:2px solid var(--line);
+}
+h3{font-size:21px;margin:34px 0 12px}
+h4{font-size:17px;margin:26px 0 8px}
+p{margin:13px 0}
+.meta{color:var(--muted);margin-bottom:28px}
+.meta span{display:inline-block;margin:0 18px 5px 0}
+.reading-guide{
+  background:linear-gradient(135deg,#eef4ff,#f8fbff);
+  border:1px solid #cddcf4;
+  border-radius:12px;
+  padding:20px 22px;
+  margin:26px 0;
+}
+.paper-unit{
+  border-left:3px solid transparent;
+  padding-left:16px;
+  margin-left:-19px;
+}
+.paper-unit:hover{border-left-color:#b7c9e8}
+.source-ref{
+  color:var(--muted);
+  font-size:13px;
+  letter-spacing:.01em;
+}
+.evidence{
+  display:inline-block;
+  font-size:12px;
+  line-height:1.5;
+  padding:2px 7px;
+  margin-right:6px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  background:#fff;
+}
+.evidence.paper{color:#174a83;background:#eef5ff;border-color:#c9daf0}
+.evidence.code{color:#5a3e8a;background:#f5f0ff;border-color:#ddd0f1}
+.evidence.background{color:#22633a;background:#eef8f1;border-color:#cce5d3}
+.evidence.analysis{color:#775714;background:#fff8e6;border-color:#ead9ad}
+.evidence.inferred{color:var(--danger);background:#fff1ef;border-color:#efc5bf}
+.strict,.bridge,.formula-card,.experiment-card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px 18px;
+  margin:16px 0;
+}
+.strict{background:var(--strict)}
+.bridge{background:var(--bridge)}
+.formula-card{background:#fbfbfd}
+.formula-card .katex-display{overflow-x:auto;overflow-y:hidden;padding:8px 0}
+.symbol-table{font-size:14px}
+figure{margin:24px 0}
+figure img{display:block;max-width:100%;height:auto;margin:auto;border:1px solid var(--line);border-radius:8px}
+figcaption{color:var(--muted);font-size:14px;margin-top:9px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#f4f6f9;font-weight:650}
+pre{
+  background:var(--code);
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:15px;
+  overflow:auto;
+  line-height:1.55;
+}
+code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:.9em}
+details{
+  border:1px solid var(--line);
+  border-radius:9px;
+  margin:16px 0;
+  background:#fcfcfd;
+}
+summary{cursor:pointer;font-weight:650;padding:12px 15px}
+details>div{padding:0 15px 15px}
+.checkpoint{
+  border-left:4px solid var(--accent);
+  background:var(--accent-soft);
+  padding:13px 17px;
+  margin:20px 0;
+}
+.warning{
+  border-left:4px solid var(--danger);
+  background:#fff2f0;
+  padding:13px 17px;
+  margin:20px 0;
+}
+.coverage-ok{color:#1e6b39;font-weight:650}
+.coverage-gap{color:var(--danger);font-weight:650}
+blockquote{margin:18px 0;padding:8px 18px;border-left:4px solid #b9c6d8;color:#485468;background:#f8fafc}
+.footer{margin-top:58px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:900px){
+  .page{display:block;width:min(100% - 18px,900px);margin-top:9px}
+  .toc{position:relative;top:auto;max-height:none;margin-bottom:10px}
+  main{padding:24px 18px}
+  .paper-unit{margin-left:0;padding-left:12px}
+}
+@media print{
+  body{background:#fff}
+  .page{display:block;width:100%;margin:0}
+  .toc{display:none}
+  main{border:0;box-shadow:none;padding:0}
+  details>div{display:block}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="toc" aria-label="文章目录">
+    <strong>目录</strong>
+    <ol id="toc-list"></ol>
+  </nav>
+
+  <main>
+    <header>
+      <h1>{{TITLE}}</h1>
+      <div class="meta">
+        <span>作者：{{AUTHORS}}</span>
+        <span>版本：{{VERSION}}</span>
+        <span>来源：{{SOURCE_LINK}}</span>
+        <span>代码：{{CODE_STATUS}}</span>
+      </div>
+    </header>
+
+    <section class="reading-guide" id="reading-guide">
+      <h2>读前导航</h2>
+      <!-- 填写研究问题、输入输出、核心假设、pipeline、前置知识和阅读路径。 -->
+    </section>
+
+    <!--
+      将正文按论文原结构放在这里。
+      每个 paper map 单元必须使用 data-source-id，例如：
+
+      <section class="paper-unit" id="sec-3-2" data-source-id="sec-3-2">
+        <div class="source-ref">对应原文：Section 3.2</div>
+        <h3>3.2 原章节标题</h3>
+        ...
+      </section>
+
+      使用以下证据标签：
+      <span class="evidence paper">论文内容</span>
+      <span class="evidence code">官方代码</span>
+      <span class="evidence background">外部背景</span>
+      <span class="evidence analysis">分析者解释</span>
+      <span class="evidence inferred">根据上下文推断</span>
+    -->
+
+    <section id="coverage-audit">
+      <h2>完整覆盖审计</h2>
+      <!-- 填写类别计数、unavailable 项及其影响。 -->
+    </section>
+
+    <div class="footer">
+      本文按论文原结构生成。分析者补充、外部背景和上下文推断均应与论文原始陈述明确区分。
+    </div>
+  </main>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad:true,theme:"neutral",securityLevel:"loose"});
+(function buildToc(){
+  const list=document.getElementById("toc-list");
+  const headings=document.querySelectorAll("main h2, main h3");
+  headings.forEach((heading,index)=>{
+    if(!heading.id){
+      const parent=heading.closest("[id]");
+      heading.id=parent&&parent.id?parent.id+"-heading":"heading-"+index;
+    }
+    const item=document.createElement("li");
+    item.className=heading.tagName==="H3"?"level-3":"level-2";
+    const link=document.createElement("a");
+    link.href="#"+heading.id;
+    link.textContent=heading.textContent;
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+})();
+</script>
+</body>
+</html>
